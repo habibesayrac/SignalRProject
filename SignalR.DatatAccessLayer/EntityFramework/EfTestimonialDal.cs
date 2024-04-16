@@ -1,7 +1,7 @@
 ﻿using SignalR.DatatAccessLayer.Abstract;
 using SignalR.DatatAccessLayer.Concrete;
 using SignalR.DatatAccessLayer.Repositories;
-using SignalRApi.EntityLayer.Entities;
+using SignalR.EntityLayer.Entities;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,9 +10,9 @@ using System.Threading.Tasks;
 
 namespace SignalR.DatatAccessLayer.EntityFramework
 {
-    public class EfAboutDal : GenericRepository<About>, IAboutDal
+    public class EfTestimonialDal : GenericRepository<Testimonial>, ITestimonialDal
     {
-        public EfAboutDal(SignalRContext context) : base(context)
+        public EfTestimonialDal(SignalRContext context) : base(context)
         {
         }
     }
