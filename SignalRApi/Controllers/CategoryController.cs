@@ -35,7 +35,7 @@ namespace SignalRApi.Controllers
                 CategoryName = createCategoryDto.CategoryName,
                 CategoryStatus = true
             });
-            return Ok("Kategori eklendi");
+            return Ok("Kategori Eklendi");
         }
         [HttpDelete]
         public IActionResult DeleteCategory(int id)
@@ -54,7 +54,7 @@ namespace SignalRApi.Controllers
                 CategoryStatus = updateCategoryDto.CategoryStatus
             });
 
-            return Ok("Kategori gücellendi");
+            return Ok("Kategori Güncellendi");
         }
         [HttpGet("GetCategory")]
         public IActionResult GetCategory(int id)
