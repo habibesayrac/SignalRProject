@@ -39,12 +39,18 @@ namespace SignalRApi.Controllers
             });
             return Ok("İletişim Bilgisi Eklendi");
         }
-        [HttpDelete]
+        [HttpDelete("{id}")]
         public IActionResult DeleteContact(int id)
         {
             var value = _contactService.TGetByID(id);
             _contactService.TDelete(value);
             return Ok("İletişim Bilgisi Silindi");
+        }
+        [HttpGet("{id}")]
+        public IActionResult GetContact(int id)
+        {
+            var value = _contactService.TGetByID(id);
+            return Ok(value);
         }
         [HttpPut]
         public IActionResult UpdateContact(UpdateContactDto updateContactDto)
@@ -60,11 +66,6 @@ namespace SignalRApi.Controllers
 
             return Ok("İletişim Bilgisi Güncellendi");
         }
-        [HttpGet("GetContact")]
-        public IActionResult GetContact(int id)
-        {
-            var value = _contactService.TGetByID(id);
-            return Ok(value);
-        }
+        
     }
 }

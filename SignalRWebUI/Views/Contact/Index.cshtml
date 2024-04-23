@@ -1,32 +1,30 @@
-﻿@model List<ResultBookingDto>
-
+﻿@model List<ResultContactDto>
 @{
     ViewData["Title"] = "Index";
     Layout = "~/Views/AdminLayout/Index.cshtml";
-    int count = 0;
 }
 
 <div class="content">
     <div class="container-fluid">
-        <h4 class="page-title">Rezervasyon İşlemleri</h4>
+        <h4 class="page-title">Ana Sayfa İletişim Bilgi İşlemleri</h4>
         <div class="row">
             <div class="col-md-12">
                 <div class="card">
                     <div class="card-header">
-                        <div class="card-title">Rezervasyon Listesi</div>
+                        <div class="card-title">İletişim Listesi</div>
                     </div>
                     <div class="card-body">
                         <div class="card-sub">
-                            Rezervasyon alanı ile ilgili işlemleri yapabilirsiniz.
+                            İletişim alanı ile ilgili işlemleri yapabilirsiniz.
                         </div>
                         <table class="table mt-3">
                             <thead>
                                 <tr>
                                     <th scope="col">#</th>
-                                    <th scope="col">Adı Soyadı</th>
+                                    <th scope="col">Konum</th>
                                     <th scope="col">Telefon</th>
-                                    <th scope="col">Kişi Sayısı</th>
-                                    <th scope="col">Rezervasyon Durumu</th>
+                                    <th scope="col">Mail</th>
+                                    <th scope="col">Açıklama</th>
                                     <th scope="col">Sil</th>
                                     <th scope="col">Güncelle</th>
                                 </tr>
@@ -34,25 +32,24 @@
                             <tbody>
                                 @foreach (var item in Model)
                                 {
-                                    count++;
                                     <tr>
-                                        <td>@count</td>
-                                        <td>@item.Name</td>
+
+                                        <td>@item.ContactID</td>
+                                        <td>@item.Location</td>
                                         <td>@item.Phone</td>
-                                        <td>@item.PersonCount</td>
-                                        <td>Rezervasyon Alındı</td>
-                                        <td><a href="/Booking/DeleteBooking/@item.BookingID" class="btn btn-outline-danger">Sil</a></td>
-                                        <td><a href="/Booking/UpdateBooking/@item.BookingID" class="btn btn-outline-warning">Güncelle</a></td>
+                                        <td>@item.Mail</td>
+                                        <td>@item.FooterDescription</td>
+                                        <td><a href="/Contact/DeleteContact/@item.ContactID" class="btn btn-outline-danger">Sil</a></td>
+                                        <td><a href="/Contact/UpdateContact/@item.ContactID" class="btn btn-outline-warning">Güncelle</a></td>
                                     </tr>
                                 }
                             </tbody>
                         </table>
-                        <a href="/Booking/CreateBooking/" class="btn btn-outline-primary">Yeni Rezervasyon Girişi</a>
+                        <a href="/Contact/CreateContact/" class="btn btn-outline-primary">Yeni İletişim Yazısı Girişi</a>
                     </div>
                 </div>
             </div>
         </div>
     </div>
 </div>
-
 
