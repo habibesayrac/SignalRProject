@@ -27,7 +27,7 @@ namespace SignalRWebUI.Controllers
 		}
 		[HttpGet]
 
-		public async Task<IActionResult> CreateBooking()
+		public IActionResult CreateBooking()
 		{
 			return View();
 		}

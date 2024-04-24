@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using SignalR.DtoLayer.DiscountDto;
+using SignalRApi.EntityLayer.Entities;
 
 namespace SignalRApi.Mapping
 {
@@ -7,10 +8,10 @@ namespace SignalRApi.Mapping
     {
         public DiscountMapping()
         {
-            CreateMap<DiscountMapping, ResultDiscountDto>().ReverseMap();
-            CreateMap<DiscountMapping, CreateDiscountDto>().ReverseMap();
-            CreateMap<DiscountMapping, UpdateDiscountDto>().ReverseMap();
-            CreateMap<DiscountMapping, GetDiscountDto>().ReverseMap();
+            CreateMap<Discount, ResultDiscountDto>().ReverseMap();
+            CreateMap<Discount, CreateDiscountDto>().ReverseMap();
+            CreateMap<Discount, UpdateDiscountDto>().ReverseMap();
+            CreateMap<Discount, GetDiscountDto>().ReverseMap();
         }
     }
 }
