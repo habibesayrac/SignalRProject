@@ -42,12 +42,18 @@ namespace SignalRApi.Controllers
             });
             return Ok("Öne Çıkan Bilgisi Eklendi");
         }
-        [HttpDelete]
+        [HttpDelete("{id}")]
         public IActionResult DeleteFeature(int id)
         {
             var value = _featureService.TGetByID(id);
             _featureService.TDelete(value);
             return Ok("Öne Çıkan Bilgisi Silindi");
+        }
+        [HttpGet("{id}")]
+        public IActionResult GetFeature(int id)
+        {
+            var value = _featureService.TGetByID(id);
+            return Ok(value);
         }
         [HttpPut]
         public IActionResult UpdateFeature(UpdateFeatureDto updateFeatureDto)
@@ -65,11 +71,6 @@ namespace SignalRApi.Controllers
 
             return Ok("Öne Çıkan Alan Bilgisi Güncellendi");
         }
-        [HttpGet("GetFeature")]
-        public IActionResult GetFeature(int id)
-        {
-            var value = _featureService.TGetByID(id);
-            return Ok(value);
-        }
+       
     }
 }
