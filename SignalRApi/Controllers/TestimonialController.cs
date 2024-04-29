@@ -39,12 +39,18 @@ namespace SignalRApi.Controllers
             });
             return Ok("Müşteri Yorum Bilgisi Eklendi");
         }
-        [HttpDelete]
+        [HttpDelete("{id}")]
         public IActionResult DeleteTestimonial(int id)
         {
             var value = _testimonialService.TGetByID(id);
             _testimonialService.TDelete(value);
             return Ok("Müşteri Yorum Bilgisi Silindi");
+        }
+        [HttpGet("{id}")]
+        public IActionResult GetTestimonial(int id)
+        {
+            var value = _testimonialService.TGetByID(id);
+            return Ok(value);
         }
         [HttpPut]
         public IActionResult UpdateTestimonial(UpdateTestimonialDto updateTestimonialDto)
@@ -61,11 +67,6 @@ namespace SignalRApi.Controllers
 
             return Ok("Müşteri Yorum Bilgisi Güncellendi");
         }
-        [HttpGet("GetTestimonial")]
-        public IActionResult GetTestimonial(int id)
-        {
-            var value = _testimonialService.TGetByID(id);
-            return Ok(value);
-        }
+        
     }
 }
