@@ -1,15 +1,15 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
-using SignalRWebUI.Dtos.FeatureDtos;
+using SignalRWebUI.Dtos.SocialMediaDtos;
 using System.Text;
 
 namespace SignalRWebUI.Controllers
 {
-    public class FeatureController : Controller
+    public class SocialMediaController : Controller
     {
         private readonly IHttpClientFactory _httpClientFactory;
 
-        public FeatureController(IHttpClientFactory httpClientFactory)
+        public SocialMediaController(IHttpClientFactory httpClientFactory)
         {
             _httpClientFactory = httpClientFactory;
         }
@@ -17,37 +17,37 @@ namespace SignalRWebUI.Controllers
         public async Task<IActionResult> Index()
         {
             var client = _httpClientFactory.CreateClient();
-            var responseMessage = await client.GetAsync("https://localhost:7277/api/Feature");
+            var responseMessage = await client.GetAsync("https://localhost:7277/api/SocialMedia");
             if (responseMessage.IsSuccessStatusCode)
             {
                 var jsonData = await responseMessage.Content.ReadAsStringAsync();
-                var values = JsonConvert.DeserializeObject<List<ResultFeatureDto>>(jsonData);
+                var values = JsonConvert.DeserializeObject<List<ResultSocialMediaDto>>(jsonData);
                 return View(values);
             }
             return View();
         }
         [HttpGet]
-        public IActionResult CreateFeature()
+        public IActionResult CreateSocialMedia()
         {
             return View();
         }
         [HttpPost]
-        public async Task<IActionResult> CreateFeature(CreateFeatureDto createFeatureDto)
+        public async Task<IActionResult> CreateSocialMedia(CreateSocialMediaDto createSocialMediaDto)
         {
             var client = _httpClientFactory.CreateClient();
-            var jsonData = JsonConvert.SerializeObject(createFeatureDto);
+            var jsonData = JsonConvert.SerializeObject(createSocialMediaDto);
             StringContent stringContent = new StringContent(jsonData, Encoding.UTF8, "application/json");
-            var responseMessage = await client.PostAsync("https://localhost:7277/api/Feature", stringContent);
+            var responseMessage = await client.PostAsync("https://localhost:7277/api/SocialMedia",stringContent);
             if (responseMessage.IsSuccessStatusCode)
             {
                 return RedirectToAction("Index");
             }
             return View();
         }
-        public async Task<IActionResult> DeleteFeature(int id)
+        public async Task<IActionResult> DeleteSocialMedia(int id)
         {
             var client = _httpClientFactory.CreateClient();
-            var responseMessage = await client.DeleteAsync($"https://localhost:7277/api/Feature/{id}");
+            var responseMessage = await client.DeleteAsync($"https://localhost:7277/api/SocialMedia/{id}");
             if (responseMessage.IsSuccessStatusCode)
             {
                 return RedirectToAction("Index");
@@ -55,26 +55,26 @@ namespace SignalRWebUI.Controllers
             return View();
         }
         [HttpGet]
-        public async Task<IActionResult> UpdateFeature(int id)
+        public async Task<IActionResult> UpdateSocialMedia(int id)
         {
             var client = _httpClientFactory.CreateClient();
-            var responseMessage = await client.GetAsync($"https://localhost:7277/api/Feature/{id}");
+            var responseMessage = await client.GetAsync($"https://localhost:7277/api/SocialMedia/{id}");
             if (responseMessage.IsSuccessStatusCode)
             {
                 var jsonData = await responseMessage.Content.ReadAsStringAsync();
-                var values = JsonConvert.DeserializeObject<UpdateFeatureDto>(jsonData);
+                var values = JsonConvert.DeserializeObject<UpdateSocialMediaDto>(jsonData);
                 return View(values);
             }
             return View();
         }
 
         [HttpPost]
-        public async Task<IActionResult> UpdateFeature(UpdateFeatureDto updateFeatureDto)
+        public async Task<IActionResult> UpdateSocialMedia(UpdateSocialMediaDto updateSocialMediaDto)
         {
-            var client = _httpClientFactory.CreateClient();
-            var jsonData = JsonConvert.SerializeObject(updateFeatureDto);
-            StringContent stringContent = new StringContent(jsonData, Encoding.UTF8, "application/json");
-            var responseMessage = await client.PutAsync("https://localhost:7277/api/Feature", stringContent);
+            var client =_httpClientFactory.CreateClient();
+            var jsonData = JsonConvert.SerializeObject(updateSocialMediaDto);
+            StringContent stringContent = new StringContent(jsonData,Encoding.UTF8, "application/json");
+            var responseMessage = await client.PutAsync("https://localhost:7277/api/SocialMedia", stringContent);
             if (responseMessage.IsSuccessStatusCode)
             {
                 return RedirectToAction("Index");
