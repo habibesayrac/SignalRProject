@@ -4,9 +4,23 @@ using SignalR.DatatAccessLayer.Abstract;
 using SignalR.DatatAccessLayer.Concrete;
 using SignalR.DatatAccessLayer.EntityFramework;
 using SignalRApi.EntityLayer.Entities;
+using SignalRApi.Hubs;
 using System.Reflection;
 
 var builder = WebApplication.CreateBuilder(args);
+
+builder.Services.AddCors(opt =>
+{
+    opt.AddPolicy("CorsPolicy", builder =>
+    {
+        builder.AllowAnyHeader()
+        .AllowAnyMethod()
+        .SetIsOriginAllowed((host) => true)
+        .AllowCredentials();
+    });
+});
+
+builder.Services.AddSignalR();
 
 // Add services to the container.
 
@@ -55,11 +69,15 @@ if (app.Environment.IsDevelopment())
     app.UseSwagger();
     app.UseSwaggerUI();
 }
+app.UseCors("CorsPolicy");
 
 app.UseHttpsRedirection();
 
 app.UseAuthorization();
 
 app.MapControllers();
+
+app.MapHub<SignalRHub>("/signalrhub");
+
 
 app.Run();
