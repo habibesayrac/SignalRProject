@@ -29,6 +29,26 @@ namespace SignalRApi.Controllers
             return Ok(value);
 
         }
+
+        [HttpGet("ProductCount")]
+        public IActionResult ProductCount()
+        {
+            return Ok(_productService.TProductCount());
+        }
+
+         [HttpGet("ProductCountByCategoryNameHamburger")]
+        public IActionResult ProductCountByCategoryNameHamburger()
+        {
+            return Ok(_productService.TProductCountByCategoryNameHamburger());
+        }
+
+         [HttpGet("ProductCountByCategoryNameDrink")]
+        public IActionResult ProductCountByCategoryNameDrink()
+        {
+            return Ok(_productService.TProductCountByCategoryNameDrink());
+        }
+
+
         [HttpGet("ProductListWithCategory")]
         public IActionResult ProductListWithCategory()
         {
@@ -77,18 +97,18 @@ namespace SignalRApi.Controllers
         {
             _productService.TUpdate(new Product()
             {
-               ProductID= updateProductDto.ProductID,
+                ProductID = updateProductDto.ProductID,
                 Description = updateProductDto.Description,
                 ImageUrl = updateProductDto.ImageUrl,
                 Price = updateProductDto.Price,
                 ProductName = updateProductDto.ProductName,
                 ProductStatus = updateProductDto.ProductStatus,
-                CategoryID= updateProductDto.CategoryID
+                CategoryID = updateProductDto.CategoryID
             });
 
             return Ok("Ürün Bilgisi Güncellendi");
         }
-      
-        
+
+
     }
 }
