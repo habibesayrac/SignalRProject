@@ -11,5 +11,6 @@ namespace SignalR.DatatAccessLayer.Abstract
     {
         int TotalOrderCount();
         int ActiveOrderCount();
+        decimal LastOrderPrice();
     }
 }
