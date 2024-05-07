@@ -54,16 +54,23 @@ namespace SignalR.DatatAccessLayer.EntityFramework
 
         public string ProductNameByMaxPrice()
         {
-            var context = new SignalRContext();
+            using var context = new SignalRContext();
             var values = context.Products.Where(x => x.Price == (context.Products.Max(y => y.Price))).Select(z => z.ProductName).FirstOrDefault();
             return values;
         }
 
         public string ProductNameByMinPrice()
         {
-            var context = new SignalRContext();
+            using var context = new SignalRContext();
             var values = context.Products.Where(x => x.Price == (context.Products.Min(y => y.Price))).Select(z => z.ProductName).FirstOrDefault();
             return values;
+        }
+
+        public decimal ProductAvgPriceByHamburger()
+        {
+            using var context = new SignalRContext();
+            return context.Products.Where(x => x.CategoryID == (context.Categories.Where(y => y.CategoryName == "Hamburger").Select(z => z.CategoryID).FirstOrDefault())).Average(w => w.Price);
+
         }
     }
 }

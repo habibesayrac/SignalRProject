@@ -3,6 +3,7 @@ using SignalR.BusinessLayer.Concrete;
 using SignalR.DatatAccessLayer.Abstract;
 using SignalR.DatatAccessLayer.Concrete;
 using SignalR.DatatAccessLayer.EntityFramework;
+using SignalR.EntityLayer.Entities;
 using SignalRApi.EntityLayer.Entities;
 using SignalRApi.Hubs;
 using System.Reflection;
@@ -54,11 +55,16 @@ builder.Services.AddScoped<ISocialMediaDal, EfSocialMediaDal>();
 builder.Services.AddScoped<ITestimonialService, TestimonialManager>();
 builder.Services.AddScoped<ITestimonialDal, EfTestimonialDal>();
 
+builder.Services.AddScoped<IOrderService, OrderManager>();
+builder.Services.AddScoped<IOrderDal, EfOrderDal>();
+
+builder.Services.AddScoped<IOrderDetailService, OrderDetailManager>();
+builder.Services.AddScoped<IOrderDetailDal, EfOrderDetailDal>();
+
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
-
 
 
 var app = builder.Build();
@@ -78,6 +84,5 @@ app.UseAuthorization();
 app.MapControllers();
 
 app.MapHub<SignalRHub>("/signalrhub");
-
 
 app.Run();
