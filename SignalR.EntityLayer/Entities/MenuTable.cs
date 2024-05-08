@@ -6,9 +6,10 @@ using System.Threading.Tasks;
 
 namespace SignalR.EntityLayer.Entities
 {
-    public class MoneyCase
+    public class MenuTable
     {
-        public int MoneyCaseID { get; set; }
-        public decimal TotalAmount { get; set; }
+        public int MenuTableID { get; set; }
+        public string Name { get; set; }
+        public bool Status { get; set; }
     }
 }
