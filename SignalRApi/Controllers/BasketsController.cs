@@ -1,11 +1,9 @@
-﻿using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using SignalR.BusinessLayer.Abstract;
 using SignalR.DatatAccessLayer.Concrete;
 using SignalR.DtoLayer.BasketDto;
 using SignalR.EntityLayer.Entities;
-using SignalRApi.EntityLayer.Entities;
 using SignalRApi.Models;
 
 namespace SignalRApi.Controllers
@@ -56,6 +54,13 @@ namespace SignalRApi.Controllers
                 TotalPrice=0
             }); 
             return Ok();
+        }
+        [HttpDelete("{id}")]
+        public async Task<IActionResult> DeleteBasket(int id)
+        {
+            var value = _basketService.TGetByID(id);
+            _basketService.TDelete(value);
+            return Ok("Sepetteki Seçilen Ürün Silindi");
         }
     }
 }
