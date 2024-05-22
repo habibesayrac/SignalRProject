@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace SignalR.EntityLayer.Entities
+namespace SignalR.DtoLayer.NotificationDto
 {
-    public class Notification
+    public class ResultNotificationDto
     {
         public int NotificationID { get; set; }
         public string Type { get; set; }
@@ -14,7 +14,5 @@ namespace SignalR.EntityLayer.Entities
         public string Description { get; set; }
         public DateTime Date { get; set; }
         public bool Status { get; set; }
-        
-
     }
 }
