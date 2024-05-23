@@ -47,7 +47,7 @@ namespace SignalRApi.Controllers
             return Ok("Ekleme işlemi başarıyla yapıldı");
         
         }
-        [HttpDelete]
+        [HttpDelete("{id}")]
         public IActionResult DeleteNotification(int id)
         {
             var value = _notificationService.TGetByID(id);
@@ -70,10 +70,23 @@ namespace SignalRApi.Controllers
                 Icon = updateNotificationDto.Icon,
                 Status = updateNotificationDto.Status,
                 Type = updateNotificationDto.Type,
-                Date = updateNotificationDto.Date
+                Date = Convert.ToDateTime(DateTime.Now.ToShortDateString())
+
             };
             _notificationService.TUpdate(notification);
             return Ok("Güncelleme işlemi başarıyla yapıldı");
+        }
+        [HttpGet("NotificationStatusChangeToFalse/{id}")]
+        public IActionResult NotificationStatusChangeToFalse(int id)
+        {
+            _notificationService.TNotificationStatusChangeToFalse(id);
+            return Ok("Güncelleme Yapıldı");
+        }
+        [HttpGet("NotificationStatusChangeToTrue/{id}")]
+        public IActionResult NotificationStatusChangeToTrue(int id)
+        {
+            _notificationService.TNotificationStatusChangeToTrue(id);
+            return Ok("Güncelleme Yapıldı");
         }
     }
 }
