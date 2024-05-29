@@ -34,6 +34,7 @@ namespace SignalRWebUI.Controllers
 		[HttpPost]
 		public async Task<IActionResult> CreateBooking(CreateBookingDto createBookingDto)
 		{
+			createBookingDto.Description = "Rezervasyon Alındı";
 			var client = _httpClientFactory.CreateClient();
 			var jsonData = JsonConvert.SerializeObject(createBookingDto);
 			StringContent stringContent = new StringContent(jsonData,Encoding.UTF8,"application/json");
@@ -47,7 +48,7 @@ namespace SignalRWebUI.Controllers
 		}
 		public async Task<IActionResult> DeleteBooking(int id)
 		{
-			var client = _httpClientFactory.CreateClient();
+            var client = _httpClientFactory.CreateClient();
 			var responseMessage = await client.DeleteAsync($"https://localhost:7277/api/Booking/{id}");
 			if (responseMessage.IsSuccessStatusCode)
 			{
@@ -71,7 +72,9 @@ namespace SignalRWebUI.Controllers
 		[HttpPost]
 		public async Task<IActionResult> UpdateBooking(UpdateBookingDto updateBookingDto)
 		{
-			var client = _httpClientFactory.CreateClient();
+            updateBookingDto.Description = "Rezervasyon Güncellendi";
+
+            var client = _httpClientFactory.CreateClient();
 			var jsonData = JsonConvert.SerializeObject(updateBookingDto);
 			StringContent stringContent = new StringContent(jsonData, Encoding.UTF8, "application/json");
 			var responseMessage = await client.PutAsync("https://localhost:7277/api/Booking", stringContent);
@@ -82,6 +85,21 @@ namespace SignalRWebUI.Controllers
 
 			return View();
 		}
+        public async Task<IActionResult> BookingStatusApproved(int id)
+        {
+            var client = _httpClientFactory.CreateClient();
+            var responseMessage = await client.GetAsync($"https://localhost:7277/api/Booking/BookingStatusApproved/{id}");
+           
+            return RedirectToAction("Index");
+        }
 
-	}
+        public async Task<IActionResult> BookingStatusCanceled(int id)
+        {
+            var client = _httpClientFactory.CreateClient();
+            var responseMessage = await client.GetAsync($"https://localhost:7277/api/Booking/BookingStatusCanceled/{id}");
+
+            return RedirectToAction("Index");
+        }
+
+    }
 }
