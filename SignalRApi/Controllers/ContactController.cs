@@ -35,7 +35,11 @@ namespace SignalRApi.Controllers
                 FooterDescription = createContactDto.FooterDescription,
                 Location = createContactDto.Location,
                 Phone = createContactDto.Phone,
-                Mail = createContactDto.Mail
+                Mail = createContactDto.Mail,
+                FooterTitle= createContactDto.FooterTitle,
+                OpenDays= createContactDto.OpenDays,
+                OpenHours= createContactDto.OpenHours,
+                OpenDaysDescription= createContactDto.OpenDaysDescription
             });
             return Ok("İletişim Bilgisi Eklendi");
         }
@@ -61,7 +65,11 @@ namespace SignalRApi.Controllers
                 FooterDescription = updateContactDto.FooterDescription,
                 Location = updateContactDto.Location,
                 Phone = updateContactDto.Phone,
-                Mail = updateContactDto.Mail
+                Mail = updateContactDto.Mail,
+                FooterTitle = updateContactDto.FooterTitle,
+                OpenDays = updateContactDto.OpenDays,
+                OpenHours = updateContactDto.OpenHours,
+                OpenDaysDescription = updateContactDto.OpenDaysDescription
             });
 
             return Ok("İletişim Bilgisi Güncellendi");
