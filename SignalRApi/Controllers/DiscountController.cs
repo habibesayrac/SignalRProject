@@ -84,5 +84,11 @@ namespace SignalRApi.Controllers
             return Ok("Ürün İndirimi Pasif");
 
         }
+        [HttpGet("GetListByStatusTrue")]
+        public IActionResult GetListByStatusTrue()
+        {
+            return Ok(_discountService.TGetListByStatusTrue());
+
+        }
     }
 }

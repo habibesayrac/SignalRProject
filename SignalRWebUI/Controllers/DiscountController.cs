@@ -95,5 +95,6 @@ namespace SignalRWebUI.Controllers
             return RedirectToAction("Index");
 
         }
+       
     }
 }
